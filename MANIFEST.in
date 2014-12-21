@@ -1,0 +1,6 @@
+include MANIFEST.in COPYING README.rst Makefile setup.cfg
+include test_chronometer.py
+recursive-include requirements *.txt
+
+global-exclude *pyc
+prune __pycache__

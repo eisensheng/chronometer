@@ -1,0 +1,8 @@
+# necessary modules for building the documentation
+
+Sphinx==1.2.3
+sphinx-readable-theme==1.1.0
+Pygments==2.0.1
+docutils==0.12
+Jinja2==2.7.3
+MarkupSafe==0.23

@@ -1,6 +1,31 @@
 Chronometer
 ===========
 
+.. image:: https://img.shields.io/travis/eisensheng/chronometer.svg?style=flat
+    :target: https://travis-ci.org/eisensheng/chronometer
+    :alt: Continuous Integration
+
+.. image:: https://img.shields.io/coveralls/eisensheng/chronometer/develop.svg?style=flat
+    :target: https://coveralls.io/r/eisensheng/chronometer?branch=develop
+    :alt: Test Coverage
+
+.. image:: https://readthedocs.org/projects/chronometer/badge/?version=latest&style=flat
+    :target: http://chronometer.readthedocs.org/en/latest/
+    :alt: Documentation
+
+.. image:: https://pypip.in/version/chronometer/badge.svg?style=flat
+    :target: https://pypi.python.org/pypi/chronometer/
+    :alt: Latest Version
+
+.. image:: https://pypip.in/py_versions/chronometer/badge.svg?style=flat
+    :target: https://pypi.python.org/pypi/chronometer/
+    :alt: Python versions
+
+.. image:: https://pypip.in/license/chronometer/badge.svg?style=flat
+    :target: https://github.com/eisensheng/chronometer/blob/develop/COPYING
+    :alt: MIT License
+
+
 Yet another simple time measurement tool for Python.  The goal of this
 implementation is to avoid as much cruft as possible.  The current version
 is 72 lines of actual code long, leaving out blank, doc and comment lines.

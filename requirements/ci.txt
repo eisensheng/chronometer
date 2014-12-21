@@ -1,0 +1,4 @@
+setuptools==8.2
+invoke==0.9.0
+tox==1.8.1
+coveralls==0.4.4

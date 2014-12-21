@@ -12,6 +12,6 @@ users should be aware of.
 Version 1.0
 -----------
 
-Yet to be released.
+Released on 2014-12-21.
 
 First public release.

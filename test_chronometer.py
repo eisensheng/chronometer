@@ -35,6 +35,14 @@ def chronometer(time_gun):
 
 
 @pytest.fixture
+def progressed_chronometer(time_gun, chronometer):
+    chronometer.start()
+    time_gun.advance(2.74)
+    chronometer.stop()
+    return chronometer
+
+
+@pytest.fixture
 def relaxed_chronometer(time_gun):
     return RelaxedChronometer(time_gun)
 
@@ -153,13 +161,13 @@ def test_reset_running_timer(time_gun, chronometer):
     assert 3.0001 > chronometer.reset() > 2.9999
 
 
-def test_formatting(time_gun, chronometer):
-    chronometer.start()
-    time_gun.advance(2.)
-    chronometer.stop()
+def test_formatting(progressed_chronometer):
+    assert '{0:.02f}'.format(progressed_chronometer) == '2.74'
+    assert '{0:03d}'.format(progressed_chronometer) == '002'
 
-    assert '{0:.02f}'.format(chronometer) == '2.00'
-    assert '{0:03d}'.format(chronometer) == '002'
+
+def test_stringify(progressed_chronometer):
+    assert str(progressed_chronometer) == '2.74000s'
 
 
 def test_integration():

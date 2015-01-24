@@ -28,7 +28,7 @@ Chronometer
 
 Yet another simple time measurement tool for Python.  The goal of this
 implementation is to avoid as much cruft as possible.  The current version
-is 72 lines of actual code long, leaving out blank, doc and comment lines.
+is 73 lines of actual code long, leaving out blank, doc and comment lines.
 Chronometer provides only functions to measure how much wall-clock time
 has passed between starting and stopping the timer.
 

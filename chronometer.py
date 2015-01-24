@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function, unicode_literals
 
+import sys
+
 from monotonic import monotonic
 
 
@@ -12,6 +14,9 @@ __all__ = ['Chronometer',
            'ChronoRuntimeError',
            'ChronoAlreadyStartedError',
            'ChronoAlreadyStoppedError', ]
+
+
+PY2 = sys.version_info[0] == 2
 
 
 class ChronoRuntimeError(Exception):
@@ -56,7 +61,15 @@ class Chronometer(object):
     def __bool__(self):
         return self.started
 
-    __nonzero__ = __bool__
+    if PY2:
+        __nonzero__ = __bool__
+
+    def __str__(self):
+        return '{0:.5f}s'.format(self.elapsed)
+
+    if PY2:
+        __unicode__ = __str__
+        __str__ = lambda self: self.__unicode__().encode('utf-8')
 
     def _set(self, since=None, until=None):
         self.since, self.until = since, until

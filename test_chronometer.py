@@ -43,7 +43,7 @@ def test_state_stopped(chronometer):
     assert chronometer.stopped
     assert not chronometer.started
     assert not chronometer
-    assert repr(chronometer) == '<ScopeTimer stopped 0.0>'
+    assert repr(chronometer) == '<Chronometer stopped 0.0>'
 
 
 def test_state_started(chronometer):
@@ -51,7 +51,7 @@ def test_state_started(chronometer):
     assert not chronometer.stopped
     assert chronometer.started
     assert chronometer
-    assert repr(chronometer) == '<ScopeTimer started 0.0>'
+    assert repr(chronometer) == '<Chronometer started 0.0>'
 
 
 def test_state_with_statement(chronometer):

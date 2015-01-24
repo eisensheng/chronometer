@@ -43,7 +43,8 @@ class Chronometer(object):
 
     def __repr__(self):
         state = 'stopped' if self.stopped else 'started'
-        return '<ScopeTimer {0} {1}>'.format(state, self.elapsed)
+        return '<{0} {1} {2}>'.format(type(self).__name__,
+                                      state, self.elapsed)
 
     def __float__(self):
         return self.elapsed

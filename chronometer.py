@@ -136,7 +136,7 @@ class Chronometer(object):
 
 
 class RelaxedStartChronometer(Chronometer):
-    """Relaxed verison which won't raise an exception on double starting
+    """Relaxed version which won't raise an exception on double starting
     the timer.
     """
     __slots__ = []

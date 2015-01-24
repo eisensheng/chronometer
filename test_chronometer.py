@@ -153,6 +153,15 @@ def test_reset_running_timer(time_gun, chronometer):
     assert 3.0001 > chronometer.reset() > 2.9999
 
 
+def test_formatting(time_gun, chronometer):
+    chronometer.start()
+    time_gun.advance(2.)
+    chronometer.stop()
+
+    assert '{0:.02f}'.format(chronometer) == '2.00'
+    assert '{0:03d}'.format(chronometer) == '002'
+
+
 def test_integration():
     t = Chronometer()
 

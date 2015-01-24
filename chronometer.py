@@ -46,6 +46,10 @@ class Chronometer(object):
         return '<{0} {1} {2}>'.format(type(self).__name__,
                                       state, self.elapsed)
 
+    def __format__(self, format_spec):
+        v = int(self.elapsed) if format_spec[-1] == 'd' else self.elapsed
+        return format(v, format_spec)
+
     def __float__(self):
         return self.elapsed
 

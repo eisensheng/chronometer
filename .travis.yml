@@ -32,6 +32,12 @@ matrix:
     - python: 3.6
       env:
         - TOX_JOB=coverage
+      addons:
+        apt:
+          sources:
+            - deadsnakes
+          packages:
+            - python3.5
 install:
     - pip install -r requirements/ci.txt
 script:

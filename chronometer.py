@@ -6,7 +6,7 @@ import sys
 from monotonic import monotonic
 
 
-__version__ = '1.0'
+__version__ = '1.1.0'
 __all__ = ['Chronometer',
            'RelaxedStartChronometer',
            'RelaxedStopChronometer',

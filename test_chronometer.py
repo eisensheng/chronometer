@@ -4,6 +4,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 import time
 
 import pytest
+import sys
 
 from chronometer import (Chronometer, RelaxedChronometer,
                          ChronoAlreadyStartedError, ChronoAlreadyStoppedError)
@@ -171,12 +172,20 @@ def test_stringify(progressed_chronometer):
 
 
 def test_integration():
+    # monotonic uses GetTickCount / GetTickCount64 on Windows
+    # https://msdn.microsoft.com/en-us/library/windows/desktop/ms724411(v=vs.85).aspx
+    """
+    The resolution of the GetTickCount64 function is limited to the resolution of the system timer,
+    which is typically in the range of 10 milliseconds to 16 milliseconds.
+    """
+    sleep_time = 0.02 if sys.platform.lower().startswith('win') else 0.002
+
     t = Chronometer()
 
     t.start()
 
     a = t.elapsed
-    time.sleep(0.002)
+    time.sleep(sleep_time)
     b = t.elapsed
 
     assert b > a
@@ -184,7 +193,7 @@ def test_integration():
     t.stop()
 
     c = t.elapsed
-    time.sleep(0.002)
+    time.sleep(sleep_time)
     d = t.elapsed
 
     assert (d - c) < 0.000001

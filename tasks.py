@@ -6,14 +6,14 @@ from datetime import datetime
 from invoke import run, task
 from textwrap import dedent
 
-from tox._config import parseconfig
+from tox.config import parseconfig
 
 RELEASE_BRANCH = 'master'
 VERSION_FILE = 'chronometer.py'
 CHANGES_FILE = 'CHANGES.rst'
 
 
-_version_re = re.compile(r'(?:v(\d+)(?:\.|_)(\d+))')
+_version_re = re.compile(r'(?:v(\d+)(?:[._])(\d+))')
 
 
 def _tool_run(*commands, env=None, **kwargs):
@@ -115,8 +115,8 @@ def _git_enable_release_branch():
         yield
 
 
-_project_assign_re = re.compile((r"""^(\s*([^\s]+)\s*=\s*(?:"|'))"""
-                                 r"""(?:[^"]*)((?:"|')\s*)$"""))
+_project_assign_re = re.compile((r"""^(\s*([^\s]+)\s*=\s*(?:["']))"""
+                                 r"""(?:[^"]*)((?:["'])\s*)$"""))
 
 
 def _project_get_metadata(*args):
@@ -159,7 +159,7 @@ def _project_patch_changelog():
 
 
 @task
-def mk_travis_config():
+def mk_travis_config(ctx):
     """Generate configuration for travis."""
     t = dedent("""\
         sudo: false
@@ -174,7 +174,7 @@ def mk_travis_config():
         after_success:
             coveralls
     """)
-    jobs = [env for env in parseconfig(None, 'tox').envlist
+    jobs = [env for env in parseconfig(None, 'tox').envconfigs
             if not env.startswith('cov-')]
     jobs += 'coverage',
     print(t.format(jobs=('\n'.join(('    - TOX_JOB=' + job)
@@ -182,18 +182,18 @@ def mk_travis_config():
 
 
 @task
-def ci_run_job(job_name):
+def ci_run_job(ctx, job_name):
     """Run given job name in tox environment.  This task is supposed to run
     within the CI environment.
     """
-    run(('tox'
+    ctx.run(('tox'
          + ((' -e ' + job_name) if job_name != 'coverage' else '')
          + ' -- --color=yes'),
         pty=True)
 
 
 @task
-def mkrelease(finish='yes', version=''):
+def mkrelease(ctx, finish='yes', version=''):
     """Allocates the next version number and marks current develop branch
     state as a new release with the allocated version number.
     Syncs new state with origin repository.
@@ -209,7 +209,7 @@ def mkrelease(finish='yes', version=''):
     _project_patch_changelog()
     patched_files = ' '.join([VERSION_FILE, CHANGES_FILE])
 
-    run('git diff ' + patched_files, pty=True)
+    ctx.run('git diff ' + patched_files, pty=True)
     _tool_run(('git commit -m "Bump Version to {0!s}" {1!s}'
                .format(version, patched_files)))
 

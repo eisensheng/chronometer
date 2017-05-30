@@ -28,8 +28,6 @@ def _read_version():
 def _read_requirements():
     lines = _file_read_lines('requirements/install.txt')
     return [r for r in (l.split('#', 1)[0].strip() for l in lines) if r]
-
-
 setup(name='chronometer',
       version=_read_version(),
       description=('Yet another simple time measurement tool for Python'
@@ -49,6 +47,10 @@ setup(name='chronometer',
           'License :: OSI Approved :: MIT License',
           'Operating System :: POSIX',
           'Operating System :: POSIX :: Linux',
+          'Operating System :: POSIX :: AIX',
+          'Operating System :: POSIX :: BSD',
+          'Operating System :: MacOS :: MacOS X',
+          'Operating System :: Microsoft :: Windows',
           'Programming Language :: Python',
           'Programming Language :: Python :: 2',
           'Programming Language :: Python :: 2.6',
@@ -57,6 +59,8 @@ setup(name='chronometer',
           'Programming Language :: Python :: 3.2',
           'Programming Language :: Python :: 3.3',
           'Programming Language :: Python :: 3.4',
+          'Programming Language :: Python :: 3.5',
+          'Programming Language :: Python :: 3.6',
           'Programming Language :: Python :: Implementation',
           'Programming Language :: Python :: Implementation :: CPython',
           'Programming Language :: Python :: Implementation :: PyPy',

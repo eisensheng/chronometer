@@ -1,5 +1,5 @@
 # necessary modules for running the test suite
 
-coverage==3.7.1
-py==1.4.26
-pytest==2.6.4
+coverage==4.4.1
+py==1.4.33
+pytest==3.1.0

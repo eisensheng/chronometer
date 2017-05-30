@@ -1,19 +1,40 @@
 sudo: false
 language: python
-python: 3.4
-env:
-    - TOX_JOB=py26
-    - TOX_JOB=py27
-    - TOX_JOB=pypy
-    - TOX_JOB=pypy3
-    - TOX_JOB=py32
-    - TOX_JOB=py33
-    - TOX_JOB=py34
-    - TOX_JOB=coverage
+matrix:
+  include:
+    - python: 3.6
+      env:
+        - TOX_JOB=pypy
+    - python: 3.6
+      env:
+        - TOX_JOB=pypy3
+    - python: 3.6
+      env:
+        - TOX_JOB=py26
+    - python: 3.6
+      env:
+        - TOX_JOB=py27
+    - python: 3.6
+      env:
+        - TOX_JOB=py32
+    - python: 3.6
+      env:
+        - TOX_JOB=py33
+    - python: 3.6
+      env:
+        - TOX_JOB=py34
+    - python: 3.5
+      env:
+        - TOX_JOB=py35
+    - python: 3.6
+      env:
+        - TOX_JOB=py36
+    - python: 3.6
+      env:
+        - TOX_JOB=coverage
 install:
     - pip install -r requirements/ci.txt
 script:
     - invoke ci_run_job $TOX_JOB
 after_success:
     coveralls
-

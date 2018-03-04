@@ -13,15 +13,15 @@ Chronometer
     :target: http://chronometer.readthedocs.org/en/latest/
     :alt: Documentation
 
-.. image:: https://pypip.in/version/chronometer/badge.svg?style=flat
+.. image:: https://img.shields.io/pypi/v/chronometer.svg?style=flat
     :target: https://pypi.python.org/pypi/chronometer/
     :alt: Latest Version
 
-.. image:: https://pypip.in/py_versions/chronometer/badge.svg?style=flat
+.. image:: https://img.shields.io/pypi/pyversions/chronometer.svg?style=flat
     :target: https://pypi.python.org/pypi/chronometer/
     :alt: Python versions
 
-.. image:: https://pypip.in/license/chronometer/badge.svg?style=flat
+.. image:: https://img.shields.io/pypi/l/chronometer.svg?style=flat
     :target: https://github.com/eisensheng/chronometer/blob/develop/COPYING
     :alt: MIT License
 
